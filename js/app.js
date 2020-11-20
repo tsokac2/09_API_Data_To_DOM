@@ -21,9 +21,18 @@ function getData(type, cb) {
 };
 
 function writeToDocument(type) {
-    getData(type, function(data){
-        document.getElementById("data").innerHTML = data;
-    });
+   let el = document.getElementById("data");
+   el.innerHTML = "";
+   getData(type, function(data){
+        data = data.results;
+
+        data.forEach(function(item){
+            Object.keys(item).forEach(function(key){
+                console.log(key);
+            })
+            el.innerHTML += "<p>" + item.name + "</p>";
+        });
+   });
 }
 
 
